@@ -13,6 +13,7 @@ class Welcome extends Application
 	/**
 	 * Homepage for our app
 	 */
+	
 	public function index()
 	{
 		// this is the view we want shown
@@ -23,11 +24,35 @@ class Welcome extends Application
 		$authors = array ();
 		foreach ($source as $record)
 		{
-			$authors[] = array ('who' => $record['who'], 'mug' => $record['mug'], 'href' => $record['where']);
+			$authors[] = array ('who' => $record['who'], 'mug' => $record['mug'], 'href' => $record['where'], 'what' => $record['what']);
 		}
 		$this->data['authors'] = $authors;
 
 		$this->render();
 	}
+	
 
+	public function random()
+	{
+		// this is the view we want shown
+		$this->data['pagebody'] = 'homepage';
+
+		// build the list of authors, to pass on to our view
+		$source = $this->quotes->all();
+		$authors = array ();
+		
+		//randomizes elements in the array
+		shuffle($source);
+		foreach ($source as $record)
+		{
+			$authors[] = array ('who' => $record['who'], 'mug' => $record['mug'], 'href' => $record['where'], 'what' => $record['what']);
+		}
+		
+		//deletes every element after the first
+		$authors = array_slice($authors, -1);
+		
+		$this->data['authors'] = $authors;
+
+		$this->render();
+	}                                            
 }
