@@ -13,7 +13,7 @@ class Welcome extends Application
 	/**
 	 * Homepage for our app
 	 */
-	/**
+	
 	public function index()
 	{
 		// this is the view we want shown
@@ -30,9 +30,9 @@ class Welcome extends Application
 
 		$this->render();
 	}
-	**/
+	
 
-	public function index()
+	public function random()
 	{
 		// this is the view we want shown
 		$this->data['pagebody'] = 'homepage';
